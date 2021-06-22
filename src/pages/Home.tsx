@@ -1,7 +1,6 @@
-import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import { AuthContext } from '../App'
+import { useAuth } from '../hooks/useAuth'
 
 import illustrationImg from '../assets/images/illustration.svg'
 import logoImg from '../assets/images/logo.svg'
@@ -13,7 +12,7 @@ import '../styles/auth.scss'
 
 export function Home() {
   const history = useHistory()
-  const { user, signInWithGoogle } = useContext(AuthContext)
+  const { user, signInWithGoogle } = useAuth()
 
   async function handleCreateRoom() {
     if (!user) {
@@ -30,7 +29,6 @@ export function Home() {
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
       <main>
-        <h1>{user?.name}</h1>
         <div className="main-content">
           <img src={logoImg} alt="Letmeask"/>
           <button onClick={handleCreateRoom} className="create-room">
