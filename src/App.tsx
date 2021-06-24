@@ -5,12 +5,14 @@ import { NewRoom } from "./pages/NewRoom"
 import { Room } from './pages/Room';
 
 import { AuthContextProvider } from './contexts/AuthContext'
+import { ThemeContextProvider } from './contexts/ThemeContext';
 
 function App() {
   
 
   return (
     <BrowserRouter>
+    <ThemeContextProvider>
       <AuthContextProvider>
         <Switch>
           <Route path="/" exact component={Home} />
@@ -18,6 +20,7 @@ function App() {
           <Route path="/rooms/:id" component={Room} />
         </Switch>
       </AuthContextProvider>
+      </ThemeContextProvider>
     </BrowserRouter>
   );
 }
