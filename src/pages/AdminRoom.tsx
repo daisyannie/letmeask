@@ -16,10 +16,18 @@ type RoomParams = {
 }
 
 export function AdminRoom() {
+  const history = useHistory()
   const { id: roomId } = useParams<RoomParams>()
 
   const { title, questions } = useRoom(roomId)
 
+  async function handleEndRoom() {
+    await database.ref(`rooms/${roomId}`).update({
+      endedAt: new Date()
+    })
+
+    history.push('/')
+  }
 
   async function handleDeleteQuestion(questionId: string) {
     if(window.confirm('Tem certeza que deseja excluir esta pergunta?')) {
@@ -35,6 +43,7 @@ export function AdminRoom() {
           <div>
             <RoomCode code={roomId}/>
             <Button 
+              onClick={handleEndRoom}
               isOutlined
             >
               Encerrar sala
