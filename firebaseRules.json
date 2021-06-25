@@ -5,13 +5,13 @@
       ".write": "auth != null",
       "$roomId": {
         ".read": true,
-        ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",
+        ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.uid)",
         "questions": {
           ".read": true,
-          ".write": "(!data.exists() || auth != null && data.parent().child('authorId').val() == auth.id)",
+          ".write": "(!data.exists() || auth != null && data.parent().child('authorId').val() == auth.uid)",
           "likes": {
             ".read": true,
-            ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)"
+            ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.uid)"
           }
         }
       }
